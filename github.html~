@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>GitHub Page</title>
+    <link href="./css/github_repos_badge.css" media="screen" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="dashboard">
+      <div class="news"></div>
+      <div class="repos" id="your_repos">
+        <div class="top_bar">
+          <h2>Your Repositories <em>(18)</em></h2>
+        </div>
+        <div class="filter_bar">
+          <input type="search" class="filter_input native" placeholder="Find a repository&hellip;">
+          <ul class="repo_filterer">
+            <li class="all_repos"><a href="#" class="repo_filter filter_selected" rel="public, li.private">All Repositories</a></li>
+            <li><a href="#" class="repo_filter" rel="source">Sources</a></li>
+            <li><a href="#" class="repo_filter" rel="fork">Forks</a></li>
+          </ul>
+        </div>
+        <ul id="repo_listing" class="repo_list">
+          <li class="source">
+            <a href="http://github.com/Sannis/sannis.github.com">
+              <span class="owner">Sannis</span>/<span class="repo">sannis.github.com</span>
+            </a>
+          </li>
+          <li class="source">
+            <a href="http://github.com/Sannis/node-mysql-libmysqlclient">
+              <span class="owner">Sannis</span>/<span class="repo">node-mysql-libmysqlclient</span>
+            </a>
+          </li>
+          <li class="fork">
+            <a href="http://github.com/Sannis/node-gc">
+              <span class="owner">Sannis</span>/<span class="repo">node-gc</span>
+            </a>
+          </li>
+          <li class="fork">
+            <a href="http://github.com/Sannis/nodeunit">
+              <span class="owner">Sannis</span>/<span class="repo">nodeunit</span>
+            </a>
+          </li>
+          <li class="fork">
+            <a href="http://github.com/Sannis/nodelint">
+              <span class="owner">Sannis</span>/<span class="repo">nodelint</span>
+            </a>
+          </li>
+          <li class="source">
+            <a href="http://github.com/tav/nodelint">
+              <span class="owner">tav</span>/<span class="repo">nodelint</span>
+            </a>
+          </li>
+          <li class="source">
+            <a href="http://github.com/Sannis/node-mysql-bindings-benchmarks">
+              <span class="owner">Sannis</span>/<span class="repo">node-mysql-bindings-benchmarks</span>
+            </a>
+          </li>
+          <li class="fork">
+            <a href="http://github.com/Sannis/node-async-simple">
+              <span class="owner">Sannis</span>/<span class="repo">node-async-simple</span>
+            </a>
+          </li>
+          <li class="fork">
+            <a href="http://github.com/Sannis/dox">
+              <span class="owner">Sannis</span>/<span class="repo">dox</span>
+            </a>
+          </li>
+          <li class="fork">
+            <a href="http://github.com/Sannis/nodejs-docs-rus">
+              <span class="owner">Sannis</span>/<span class="repo">nodejs-docs-rus</span>
+            </a>
+          </li>
+        </ul>
+        <div class="bottom_bar">
+          <a href="#" class="show_more" id="inline_your_repos">Show 8 more repositories&hellip;</a>
+        </div>
+      </div>
+    </div>
+    <!--[if IE 8]>
+    <script type="text/javascript" charset="utf-8">
+      $(document.body).addClass("ie8")
+    </script>
+    <![endif]-->
+    <!--[if IE 7]>
+    <script type="text/javascript" charset="utf-8">
+      $(document.body).addClass("ie7")
+    </script>
+    <![endif]-->
+  </body>
+</html>
