@@ -1,0 +1,37 @@
+#wrapper {
+    margin: 0px auto;
+    width: 1071px;
+}
+
+#header {
+    float: left;
+    width: 100%;
+    margin: 10px;
+}
+
+#header h1 {
+    font: 20px helvetica, arial, freesans, clean, sans-serif;
+    line-height: 44px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#Sannis_repos_node {
+    float: left;
+    margin: 10px;
+    width: 333px;
+}
+
+
+#Sannis_repos_other {
+    float: left;
+    margin: 10px;
+    width: 333px;
+}
+
+
+#Sannis_watched {
+    float: left;
+    margin: 10px;
+    width: 333px;
+}
