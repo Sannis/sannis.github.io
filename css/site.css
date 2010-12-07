@@ -14,6 +14,73 @@
     line-height: 44px;
     text-align: center;
     font-weight: bold;
+    color: #52595D;
+}
+
+#Main_block {
+    float: left;
+    margin: 10px;
+    width: 690px;
+    height: 368px;
+    padding: 0 2px;
+}
+
+#SannisDev_twitter {
+    float: left;
+    margin: 10px;
+    width: 333px;
+}
+
+.twtr-doc {
+    padding: 0 2px;
+    background: url(../images/box_back.gif) 0 0 repeat-y;
+}
+
+.twtr-hd {
+    height: 44px;
+    padding: 0 2px !important;
+    margin-left: -2px;
+    width: 100%;
+    background: url(../images/box_top.gif) 0 0 no-repeat;
+}
+
+.twtr-profile-img {
+    display: none !important;
+}
+
+.twtr-hd > h3 {
+    display: none !important;
+}
+
+.twtr-hd > h4 {
+    color: #52595D;
+    font-size: 16px;
+    height: 44px;
+    line-height: 44px;
+}
+
+.twtr-hd > h4 > a {
+    margin-left: -30px !important; /* -40 margin + 10 padding*/
+    line-height: 44px;
+}
+
+.twtr-bd {
+    padding: 0 !important;
+}
+
+.twtr-bd .twtr-tweet {
+    border-bottom: 1px solid #E5E5E5 !important;
+}
+
+.twtr-ft {
+    min-height:13px;
+    padding: 0 2px 3px 2px;
+    margin-left: -2px;
+    background: url(../images/box_bottom.gif) 0 100% no-repeat;
+}
+
+.clear {
+    clear: left;
 }
 
 #Sannis_repos_node, #Sannis_repos_other, #Filamentum_repos {

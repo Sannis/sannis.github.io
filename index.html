@@ -6,9 +6,9 @@
     <title>Sannis' GitHub Page</title>
     <link href="./css/site.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="./css/github_repos_badge.css" media="screen" rel="stylesheet" type="text/css" />
-    <script src="./js/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./js/github_styled_badges.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" charset="utf-8">
+    <script src="./js/jquery-1.4.2.min.js" type="text/javascript"></script>
+    <script src="./js/github_styled_badges.js" type="text/javascript"></script>
+    <script type="text/javascript">
       $(document).ready(function () {
         var repos_to_show = 7;
         var filter_node = function (repo) {
@@ -29,13 +29,48 @@
         githubReposFilamentum.render();
       });
     </script>
+    <script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
   </head>
   <body>
     <div id="wrapper">
-      <div id="header"><h1>My projects on GitHub</h1></div>
-      <div id="Sannis_repos_node">Node.js related</div>
+      <div id="header"><h1>Title should be here.</h1></div>
+      <div id="Main_block"></div>
+      <div id="SannisDev_twitter">
+        <script type="text/javascript">
+          new TWTR.Widget({
+            version: 2,
+            type: 'profile',
+            rpp: 20,
+            interval: 6000,
+            width: 333,
+            height: 284, /*368 css - 84 cabalic number*/
+            theme: {
+              shell: {
+                background: 'transparent',
+                color: '#52595d'
+              },
+              tweets: {
+                background: '#ffffff',
+                color: '#52595d',
+                links: '#4183c4'
+              }
+            },
+            features: {
+              scrollbar: true,
+              loop: false,
+              live: true,
+              hashtags: true,
+              timestamp: true,
+              avatars: true,
+              behavior: 'all'
+            }
+          }).render().setUser('SannisDev').start();
+        </script>
+      </div>
+      <div class="clear"></div>
+      <div id="Sannis_repos_node">Node.js related repos</div>
       <div id="Sannis_repos_other">Other repos</div>
-      <div id="Filamentum_repos">Filamentum</div>
+      <div id="Filamentum_repos">Filamentum repos</div>
     </div>
   </body>
 </html>
