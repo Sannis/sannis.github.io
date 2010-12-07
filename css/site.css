@@ -16,22 +16,9 @@
     font-weight: bold;
 }
 
-#Sannis_repos_node {
+#Sannis_repos_node, #Sannis_repos_other, #Filamentum_repos {
     float: left;
     margin: 10px;
     width: 333px;
 }
 
-
-#Sannis_repos_other {
-    float: left;
-    margin: 10px;
-    width: 333px;
-}
-
-
-#Sannis_watched {
-    float: left;
-    margin: 10px;
-    width: 333px;
-}

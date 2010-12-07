@@ -6,12 +6,6 @@
     <title>Sannis' GitHub Page</title>
     <link href="./css/site.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="./css/github_repos_badge.css" media="screen" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" charset="utf-8">
-      var github_user = "Sannis";
-      var github_repos_node_badge_obj = "#Sannis_repos_node";
-      var github_repos_other_badge_obj = "#Sannis_repos_other";
-      var github_watched_badge_obj = "#Sannis_watched";
-    </script>
     <script src="./js/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="./js/github_styled_badges.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
@@ -21,18 +15,18 @@
           return /node/.test(repo.name) || /(notabene|camo|dox|koala\.js)/.test(repo.name);
         }
         
-        var githubReposNodeBadge = new GithubStyledBadges.ReposBadge(github_repos_node_badge_obj, github_user, repos_to_show, function (repo) {
+        var githubReposNodeBadge = new GithubStyledBadges.ReposBadge('#Sannis_repos_node', 'Sannis', repos_to_show, function (repo) {
           return filter_node(repo);
         });
         githubReposNodeBadge.render();
         
-        var githubReposOtherBadge = new GithubStyledBadges.ReposBadge(github_repos_other_badge_obj, github_user, repos_to_show, function (repo) {
+        var githubReposOtherBadge = new GithubStyledBadges.ReposBadge('#Sannis_repos_other', 'Sannis', repos_to_show, function (repo) {
           return !filter_node(repo);
         });
         githubReposOtherBadge.render();
         
-        var githubWatchedBadge = new GithubStyledBadges.WatchedBadge(github_watched_badge_obj, github_user, repos_to_show);
-        githubWatchedBadge.render();
+        var githubReposFilamentum = new GithubStyledBadges.ReposBadge('#Filamentum_repos', 'Filamentum', repos_to_show);
+        githubReposFilamentum.render();
       });
     </script>
   </head>
@@ -41,7 +35,7 @@
       <div id="header"><h1>My projects on GitHub</h1></div>
       <div id="Sannis_repos_node">Node.js related</div>
       <div id="Sannis_repos_other">Other repos</div>
-      <div id="Sannis_watched">Watched</div>
+      <div id="Filamentum_repos">Filamentum</div>
     </div>
   </body>
 </html>
