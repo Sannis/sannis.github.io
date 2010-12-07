@@ -74,10 +74,14 @@ GithubStyledBadges.load = function (type, args, callback)  {
   }
 };
 
-GithubStyledBadges.ReposBadge = function(obj, user, repos_to_show) {
+GithubStyledBadges.ReposBadge = function(obj, user, repos_to_show, filter_loaded) {
   this.obj = $(obj);
   this.user = user;
   this.repos_to_show = repos_to_show || 5;
+  this.filter_loaded = filter_loaded || function (repo) {
+    return true;
+  }
+  this.title = $(obj).html();
   
   this.filters = {};
   
@@ -99,7 +103,7 @@ GithubStyledBadges.ReposBadge = function(obj, user, repos_to_show) {
     this.obj.empty();
     this.obj.addClass("repos");
     
-    var top_bar = $("<div class='top_bar'><h2>" + this.user + "'s Repositories</h2></div>");
+    var top_bar = $("<div class='top_bar'><h2>" + this.title + "</h2></div>");
     this.obj.append(top_bar);
     
     var filter_bar = $("<div class='filter_bar'>" +
@@ -142,16 +146,21 @@ GithubStyledBadges.ReposBadge = function(obj, user, repos_to_show) {
         GithubStyledBadges._cache.reposShow[self.user] = data;
       }
       
-      // Filter data
-      repositories = data.repositories.filter(function(repo) {
+      // Filter with filter_loaded
+      repositories_loaded = data.repositories.filter(function(repo) {
+        return self.filter_loaded(repo);
+      });
+      
+      // Filter with chosen filter
+      repositories_to_show = repositories_loaded.filter(function(repo) {
         return self.filter(repo);
       });
       
       // Calc valid count to show
-      var repos_to_show = repositories.length > self.repos_to_show ? self.repos_to_show : repositories.length;
+      var repos_to_show = repositories_to_show.length > self.repos_to_show ? self.repos_to_show : repositories_to_show.length;
       
       // Update top_bar with repos count
-      top_bar.find("h2").first().html(self.user + "'s Repositories <em>(" + data.repositories.length + ")</em>");
+      top_bar.find("h2").first().html(self.title + " <em>(" + repositories_loaded.length + ")</em>");
       
       // Highlight current filter
       filter_bar.find("a").each(function(i, el) {
@@ -168,7 +177,7 @@ GithubStyledBadges.ReposBadge = function(obj, user, repos_to_show) {
       // Render list
       var i, repo, li;
       for (i = 0; i < repos_to_show; i += 1) {
-        repo = repositories[i];
+        repo = repositories_to_show[i];
         li = $("<li class='" + (repo.fork ? "fork" : "source") + "'>" +
                  "<a href='" + repo.url + "'>" +
                    "<span class='owner'>" + repo.owner + "</span>/<span class='repo'>" + repo.name + "</span>" +
@@ -178,15 +187,15 @@ GithubStyledBadges.ReposBadge = function(obj, user, repos_to_show) {
       }
       
       // Update bottom_bar with repos count
-      if (repos_to_show != repositories.length) {
-        bottom_bar.html("<a href='#' class='show_more'>Show " + (repositories.length - repos_to_show) + " more repositories&hellip;</a>");
+      if (repos_to_show != repositories_to_show.length) {
+        bottom_bar.html("<a href='#' class='show_more'>Show " + (repositories_to_show.length - repos_to_show) + " more repositories&hellip;</a>");
       } else {
         bottom_bar.empty();
       }
       
       // Add 'show more' handler
       bottom_bar.find("a").first().click(function() {
-        self.repos_to_show = data.repositories.length;
+        self.repos_to_show = repositories_loaded.length;
         callback(GithubStyledBadges._cache.reposShow[self.user]);
       });
     };
@@ -199,6 +208,7 @@ GithubStyledBadges.WatchedBadge = function(obj, user, repos_to_show) {
   this.obj = $(obj);
   this.user = user;
   this.repos_to_show = repos_to_show || 5;
+  this.title = $(obj).html();
   
   this.filters = {};
   
@@ -272,7 +282,7 @@ GithubStyledBadges.WatchedBadge = function(obj, user, repos_to_show) {
       var repos_to_show = repositories.length > self.repos_to_show ? self.repos_to_show : repositories.length;
       
       // Update top_bar with repos count
-      top_bar.find("h2").first().html(self.user + "'s Watched <em>(" + data.repositories.length + ")</em>");
+      top_bar.find("h2").first().html(self.title + " <em>(" + data.repositories.length + ")</em>");
       
       // Highlight current filter
       filter_bar.find("a").each(function(i, el) {

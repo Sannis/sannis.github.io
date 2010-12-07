@@ -7,16 +7,30 @@
     <link href="./css/github_repos_badge.css" media="screen" rel="stylesheet" type="text/css">
     <script type="text/javascript" charset="utf-8">
       var github_user = "Sannis";
-      var github_repos_badge_obj = "#Sannis_repos";
-      var github_watched_badge_obj = "#Sannis_news";
+      var github_repos_node_badge_obj = "#Sannis_repos_node";
+      var github_repos_other_badge_obj = "#Sannis_repos_other";
+      var github_watched_badge_obj = "#Sannis_watched";
     </script>
     <script src="./js/jquery-1.4.2.min.js" type="text/javascript"></script>
     <script src="./js/github_styled_badges.js" type="text/javascript"></script>
     <script type = "text/javascript">
       $(document).ready(function () {
-        var githubReposBadge = new GithubStyledBadges.ReposBadge(github_repos_badge_obj, github_user);
-        githubReposBadge.render();
-        var githubWatchedBadge = new GithubStyledBadges.WatchedBadge(github_watched_badge_obj, github_user);
+        var repos_to_show = 7;
+        var filter_node = function (repo) {
+          return /node/.test(repo.name) || /(notabene|camo|dox|koala\.js)/.test(repo.name);
+        }
+        
+        var githubReposNodeBadge = new GithubStyledBadges.ReposBadge(github_repos_node_badge_obj, github_user, repos_to_show, function (repo) {
+          return filter_node(repo);
+        });
+        githubReposNodeBadge.render();
+        
+        var githubReposOtherBadge = new GithubStyledBadges.ReposBadge(github_repos_other_badge_obj, github_user, repos_to_show, function (repo) {
+          return !filter_node(repo);
+        });
+        githubReposOtherBadge.render();
+        
+        var githubWatchedBadge = new GithubStyledBadges.WatchedBadge(github_watched_badge_obj, github_user, repos_to_show);
         githubWatchedBadge.render();
       });
     </script>
@@ -24,8 +38,9 @@
   <body>
     <div id="dashboard">
       <div id="Sannis_news"></div>
-      <div id="Sannis_repos"></div>
-      <div id="Sannis_watched"></div>
+      <div id="Sannis_repos_node">Node.js related</div>
+      <div id="Sannis_repos_other">Other repos</div>
+      <div id="Sannis_watched">Sannis's Watched</div>
     </div>
     <!--[if IE 8]>
     <script type="text/javascript" charset="utf-8">
