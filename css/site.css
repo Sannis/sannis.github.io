@@ -83,7 +83,7 @@
     clear: left;
 }
 
-#Sannis_repos_node, #Sannis_repos_other, #Filamentum_repos {
+.repos {
     float: left;
     margin: 10px;
     width: 333px;
