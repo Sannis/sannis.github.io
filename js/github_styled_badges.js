@@ -20,16 +20,16 @@ GithubStyledBadges.load = function (type, args, callback)  {
   var cache_level;
   var cache_key;
   var api_url;
-  var api_base_url = "http://github.com/api/v2/json";
+  var api_base_url = "http://api.github.com";
   
   cache_level = type;
   
   if (type == "reposShow") {
     cache_key = args.user;
-    api_url = api_base_url + "/repos/show/" + args.user;
+    api_url = api_base_url + "/users/" + args.user + "/repos";
   } else if (type == "reposWatched") {
     cache_key = args.user;
-    api_url = api_base_url + "/repos/watched/" + args.user;
+    api_url = api_base_url + "/users/" + args.user + "/subscriptions";
     
     var real_callback = callback;
     
@@ -64,9 +64,9 @@ GithubStyledBadges.load = function (type, args, callback)  {
       if (GithubStyledBadges._callbacks[id]) {
         delete GithubStyledBadges._callbacks[id];
       }
-      
+
       callback(data);
-    }
+    };
     
     $.getScript(api_url + "?callback=" + encodeURIComponent("GithubStyledBadges._callbacks[" + id + "]"));
   } else {
@@ -80,7 +80,7 @@ GithubStyledBadges.ReposBadge = function(obj, user, repos_to_show, filter_loaded
   this.repos_to_show = repos_to_show || 5;
   this.filter_loaded = filter_loaded || function (repo) {
     return true;
-  }
+  };
   this.title = $(obj).html();
   
   this.filters = {};
@@ -121,12 +121,11 @@ GithubStyledBadges.ReposBadge = function(obj, user, repos_to_show, filter_loaded
         self.filter = self.filters[el.rel];
         callback(GithubStyledBadges._cache.reposShow[self.user]);
       });
-      
     });
     
     var repo_list = $("<ul class='repo_list'>" +
-    "<li class='loading'><span>Loading&hellip;</span></li>" +
-    "</ul>");
+                        "<li class='loading'><span>Loading&hellip;</span></li>" +
+                      "</ul>");
     this.obj.append(repo_list);
     
     var bottom_bar = $("<div class='bottom_bar'></div>");
@@ -136,7 +135,7 @@ GithubStyledBadges.ReposBadge = function(obj, user, repos_to_show, filter_loaded
     var callback = function(data) {
       if (GithubStyledBadges._cache.reposShow[self.user] === undefined) {
         // Sort repos
-        data.repositories.sort(function (a, b) {
+        data.data.sort(function (a, b) {
           a = a.pushed_at || a.created_at;
           b = b.pushed_at || b.created_at;
           
@@ -147,7 +146,7 @@ GithubStyledBadges.ReposBadge = function(obj, user, repos_to_show, filter_loaded
       }
       
       // Filter with filter_loaded
-      repositories_loaded = data.repositories.filter(function(repo) {
+      repositories_loaded = data.data.filter(function(repo) {
         return self.filter_loaded(repo);
       });
       
@@ -180,7 +179,7 @@ GithubStyledBadges.ReposBadge = function(obj, user, repos_to_show, filter_loaded
         repo = repositories_to_show[i];
         li = $("<li class='" + (repo.fork ? "fork" : "source") + "'>" +
                  "<a href='" + repo.url + "'>" +
-                   "<span class='owner'>" + repo.owner + "</span>/<span class='repo'>" + repo.name + "</span>" +
+                   "<span class='owner'>" + repo.full_name + "</span>" +
                  "</a>" +
                "</li>");
         repo_list.append(li);
